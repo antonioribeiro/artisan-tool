@@ -1,0 +1,54 @@
+{
+    "name": "pragmarx/artisan-tool",
+    "description": "Brings Artisan to Nova",
+    "keywords": [
+        "laravel",
+        "nova"
+    ],
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../laravel-nova"
+        }
+    ],
+    "homepage": "https://github.com/pragmarx/artisan-tool",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Antonio Carlos Ribeiro",
+            "email": ":acr@antoniocarlosribeiro.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "laravel/nova": "*",
+        "sensiolabs/ansi-to-html": "~1"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^3.6",
+        "phpunit/phpunit": "7.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "PragmaRX\\ArtisanTool\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PragmaRX\\ArtisanTool\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "PragmaRX\\ArtisanTool\\ToolServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
