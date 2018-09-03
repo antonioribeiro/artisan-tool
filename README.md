@@ -9,7 +9,11 @@
 
 Add a screenshot of the tool here.
 
+!(screenshot1)[docs/img/screenshot-1.png]
 
+!(screenshot1)[docs/img/screenshot-2.png]
+
+!(screenshot1)[docs/img/screenshot-3.png]
 
 ## Installation
 
