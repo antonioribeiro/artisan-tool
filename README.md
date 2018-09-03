@@ -2,10 +2,6 @@
 # Brings the power of Artisan to Nova
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/pragmarx/artisan-tool.svg?style=flat-square)](https://packagist.org/packages/pragmarx/artisan-tool)
-![CircleCI branch](https://img.shields.io/circleci/project/github/pragmarx/artisan-tool/master.svg?style=flat-square)
-[![Build Status](https://img.shields.io/travis/pragmarx/artisan-tool/master.svg?style=flat-square)](https://travis-ci.org/pragmarx/artisan-tool)
-[![Quality Score](https://img.shields.io/scrutinizer/g/pragmarx/artisan-tool.svg?style=flat-square)](https://scrutinizer-ci.com/g/pragmarx/artisan-tool)
-[![Total Downloads](https://img.shields.io/packagist/dt/pragmarx/artisan-tool.svg?style=flat-square)](https://packagist.org/packages/pragmarx/artisan-tool)
 
 Add a screenshot of the tool here.
 
