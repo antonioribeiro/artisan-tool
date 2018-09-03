@@ -3,6 +3,7 @@
 namespace PragmaRX\ArtisanTool\Support;
 
 use SensioLabs\AnsiConverter\AnsiToHtmlConverter;
+use Illuminate\Support\Facades\Artisan as IlluminateArtisan;
 
 class Artisan
 {
@@ -90,7 +91,7 @@ class Artisan
      */
     public function commands()
     {
-        return collect(app(Kernel::class)->all())->mapWithKeys(function (
+        return collect(IlluminateArtisan::all())->mapWithKeys(function (
             $command
         ) {
             return [$command->getName() => $this->getCommand($command)];
