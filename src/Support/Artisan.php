@@ -7,8 +7,13 @@ use Illuminate\Support\Facades\Artisan as IlluminateArtisan;
 
 class Artisan
 {
-    const CONSOLE_BUFFER_KEY = 'artisan-tool-console-buffer';
+    const TTY_SESSION_KEY = 'artisan-tool-tty-key';
 
+    /**
+     * Clear the TTY.
+     *
+     * @param null $string
+     */
     public function clearTty($string = null)
     {
         $this->clearCurrentCommandLine();
@@ -35,7 +40,7 @@ class Artisan
         ) {
             return [
                 'name' => $name = $option->getName(),
-                'compiled' => "--{$name}",
+                'option' => "--{$name}",
                 'default' => $option->getDefault(),
                 'shortcut' => $option->getShortcut(),
                 'description' => $option->getDescription(),
@@ -71,6 +76,8 @@ class Artisan
     }
 
     /**
+     * Get command info array.
+     *
      * @param $command
      * @return array
      */
@@ -174,7 +181,7 @@ class Artisan
      */
     private function getCurrentCommandLine()
     {
-        return session()->get(static::CONSOLE_BUFFER_KEY) . '<br>';
+        return session()->get(static::TTY_SESSION_KEY) . '<br>';
     }
 
     /**
@@ -184,7 +191,7 @@ class Artisan
      */
     private function storeCurrentCommandLine(string $string)
     {
-        session()->put(static::CONSOLE_BUFFER_KEY, $string);
+        session()->put(static::TTY_SESSION_KEY, $string);
     }
 
     /**
@@ -194,7 +201,7 @@ class Artisan
      */
     private function clearCurrentCommandLine()
     {
-        session()->forget(static::CONSOLE_BUFFER_KEY);
+        session()->forget(static::TTY_SESSION_KEY);
     }
 
     /**

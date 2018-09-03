@@ -97,8 +97,7 @@ export default {
                 _.filter(this.command.options, option => option.selected),
                 option => {
                     return (
-                        option.compiled +
-                        (option.value ? '=' + option.value : '')
+                        option.option + (option.value ? '=' + option.value : '')
                     )
                 },
             )
@@ -125,8 +124,6 @@ export default {
 
             this.running = false
         },
-
-        execute() {},
 
         toggle(elementName) {
             this.$set(

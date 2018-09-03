@@ -11,10 +11,6 @@
 export default {
     props: ['option'],
 
-    data() {
-        return {}
-    },
-
     computed: {
         _buttonClasses() {
             return this.option.selected

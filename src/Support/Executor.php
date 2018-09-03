@@ -14,9 +14,16 @@ class Executor
 
     public $endedAt;
 
-    private function addScript($command, $tempFile)
+    /**
+     * Add command output piper.
+     *
+     * @param $command
+     * @param $ttyFile
+     * @return string
+     */
+    private function addPiper($command, $ttyFile)
     {
-        return "/usr/bin/script -q {$tempFile} {$command}";
+        return "/usr/bin/script -q {$ttyFile} {$command}";
     }
 
     /**
@@ -32,11 +39,11 @@ class Executor
     public function exec(
         $command,
         $runDir = null,
-        $tty,
+        $ttyFile,
         Closure $callback = null,
         $timeout = null
     ) {
-        $process = new Process($this->addScript($command, $tty), $runDir);
+        $process = new Process($this->addPiper($command, $ttyFile), $runDir);
 
         $process->setTimeout($timeout);
 
@@ -57,17 +64,5 @@ class Executor
     public function elapsedForHumans()
     {
         return $this->endedAt->diffForHumans($this->startedAt);
-    }
-
-    /**
-     * Execute a shell command.
-     *
-     * @param $command
-     *
-     * @return mixed
-     */
-    public function shellExec($command)
-    {
-        return shell_exec($command);
     }
 }
