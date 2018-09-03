@@ -1,5 +1,6 @@
 
-# Brings the power of Artisan to Nova
+# Artisan Tool
+## The power of Artisan in Nova
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/pragmarx/artisan-tool.svg?style=flat-square)](https://packagist.org/packages/pragmarx/artisan-tool)
 
