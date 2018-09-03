@@ -4,7 +4,7 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/pragmarx/artisan-tool.svg?style=flat-square)](https://packagist.org/packages/pragmarx/artisan-tool)
 
-Add a screenshot of the tool here.
+### Screenshots
 
 ![screenshot1](docs/img/screenshot-1.png)
 
@@ -12,7 +12,7 @@ Add a screenshot of the tool here.
 
 ![screenshot1](docs/img/screenshot-3.png)
 
-## Installation
+### Installation
 
 You can install the package in to a Laravel app that uses [Nova](https://nova.laravel.com) via composer:
 
@@ -36,7 +36,7 @@ public function tools()
 }
 ```
 
-## Usage
+### Usage
 
 Click on the "artisan-tool" menu item in your Nova app to see the tool provided by this package.
 
@@ -44,7 +44,7 @@ Click on the "artisan-tool" menu item in your Nova app to see the tool provided 
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
-## Contributing
+### Contributing
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
@@ -52,10 +52,10 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 If you discover any security related issues, please email :acr@antoniocarlosribeiro.com instead of using the issue tracker.
 
-## Credits
+### Credits
 
 - [Antonio Carlos Ribeiro](https://github.com/antonioribeiro)
 
-## License
+### License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
