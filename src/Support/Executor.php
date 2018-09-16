@@ -23,7 +23,7 @@ class Executor
      */
     private function addPiper($command, $ttyFile)
     {
-        return "/usr/bin/script -q {$ttyFile} {$command}";
+        return 'script -q ' . $ttyFile . ' -c "' . $command . '"';
     }
 
     /**
