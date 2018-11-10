@@ -36,6 +36,30 @@ public function tools()
 }
 ```
 
+### Whitelist Commands
+
+Optionally, You can use the `whitelistedCommands` to only display a selected list of commands in the nova tool. It is often not a great idea to have every available command in production, e.g. migrate:reset. 
+
+Start by publishing the config file:
+
+```bash
+php artisan vendor:publish --provider="PragmaRX\ArtisanTool\ToolServiceProvider" --tag="config"
+```
+
+Next, add your commands to the `config/artisan-tool.php` file:
+
+```php
+<?php
+
+return [
+    'whitelistedCommands' => [
+        \Illuminate\Cache\Console\ClearCommand::class,
+        \Illuminate\Foundation\Console\ViewClearCommand::class,
+        \Illuminate\Foundation\Console\RouteClearCommand::class,
+    ],
+];
+```
+
 ### Usage
 
 Click on the "artisan-tool" menu item in your Nova app to see the tool provided by this package.
