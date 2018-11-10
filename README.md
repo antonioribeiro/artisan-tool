@@ -31,7 +31,7 @@ public function tools()
 {
     return [
         // ...
-        new \PragmaRX\ArtisanTool\Tool,
+        new \PragmaRX\ArtisanTool\Tool(),
     ];
 }
 ```
