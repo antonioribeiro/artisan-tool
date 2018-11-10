@@ -98,11 +98,22 @@ class Artisan
      */
     public function commands()
     {
-        return collect(IlluminateArtisan::all())->mapWithKeys(function (
-            $command
-        ) {
-            return [$command->getName() => $this->getCommand($command)];
-        });
+        $whitelistedCommands = config('artisan-tool.whitelistedCommands');
+
+        return collect(IlluminateArtisan::all())
+            ->filter(function ($command) use ($whitelistedCommands) {
+                if (null === $whitelistedCommands || empty($whitelistedCommands)) {
+                    return true;
+                }
+
+                return \in_array(\get_class($command), $whitelistedCommands, true);
+            })
+            ->mapWithKeys(function ($command) {
+                return [
+                    $command->getName() => $this->getCommand($command)
+                ];
+            })
+            ->sortKeys();
     }
 
     /**

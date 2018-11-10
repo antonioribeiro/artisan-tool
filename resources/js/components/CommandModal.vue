@@ -1,6 +1,6 @@
 <template>
     <modal @modal-close="close">
-        <div class="containerTty rounded shadow p-4 m-2 max-w-3xl max-h-screen overflow-y-scroll" style="width: calc(150vh - 16rem); height: calc(100vh - 16rem);">
+        <div class="containerTty bg-white rounded shadow p-4 m-2 max-w-3xl max-h-screen overflow-y-scroll" style="width: calc(150vh - 16rem); height: calc(100vh - 16rem);">
             <div class="box box-1">
                 <div class="mb-1">
                     <h1>{{ command.name }}</h1>

@@ -23,6 +23,12 @@ class ToolServiceProvider extends ServiceProvider
             $this->routes();
         });
 
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__.'/../config/artisan-tool.php' => config_path('artisan-tool.php'),
+            ], 'config');
+        }
+
         Nova::serving(function (ServingNova $event) {
             //
         });
