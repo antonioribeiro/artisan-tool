@@ -23,27 +23,35 @@ class Executor
      */
     private function addPiper($command, $ttyFile)
     {
-        return 'script -q ' . $ttyFile . ' -c "' . $command . '"';
+        return str_replace(
+            ['%command%', '%ttyFile%'],
+            [$command, $ttyFile],
+            config('artisan-tool.piper')
+        );
     }
 
     /**
      * Execute one command.
      *
      * @param $command
-     * @param null         $runDir
+     * @param null $runDir
+     * @param $ttyFile
      * @param Closure|null $callback
-     * @param null         $timeout
+     * @param null $timeout
      *
      * @return Process
      */
     public function exec(
         $command,
+        $ttyFile = null,
         $runDir = null,
-        $ttyFile,
         Closure $callback = null,
         $timeout = null
     ) {
-        $process = new Process($this->addPiper($command, $ttyFile), $runDir);
+        $process = new Process(
+            $this->addPiper($command, $ttyFile),
+            $this->makeRunDir($runDir)
+        );
 
         $process->setTimeout($timeout);
 
@@ -64,5 +72,10 @@ class Executor
     public function elapsedForHumans()
     {
         return $this->endedAt->diffForHumans($this->startedAt);
+    }
+
+    public function makeRunDir($dir)
+    {
+        return $dir ?? base_path();
     }
 }

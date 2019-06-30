@@ -23,7 +23,7 @@ class Artisan
         }
 
         if ($string) {
-            file_put_contents($tty, $string . "<br>");
+            file_put_contents($tty, $string . '<br>');
         }
     }
 
@@ -39,7 +39,7 @@ class Artisan
             $option
         ) {
             return [
-                'name' => $name = $option->getName(),
+                'name' => ($name = $option->getName()),
                 'option' => "--{$name}",
                 'default' => $option->getDefault(),
                 'shortcut' => $option->getShortcut(),
@@ -48,7 +48,7 @@ class Artisan
                 'isRequired' => $option->isValueRequired(),
                 'selected' => false,
                 'value' => $option->getDefault(),
-                'isArray' => $option->isArray(),
+                'isArray' => $option->isArray()
             ];
         });
     }
@@ -69,7 +69,7 @@ class Artisan
                     'description' => $argument->getDescription(),
                     'value' => $argument->getDefault(),
                     'isRequired' => $argument->isRequired(),
-                    'isArray' => $argument->isArray(),
+                    'isArray' => $argument->isArray()
                 ];
             }
         );
@@ -87,7 +87,7 @@ class Artisan
             'name' => $command->getName(),
             'description' => $command->getDescription(),
             'options' => $this->compileOptions($command),
-            'arguments' => $this->compileArguments($command),
+            'arguments' => $this->compileArguments($command)
         ];
     }
 
@@ -102,11 +102,18 @@ class Artisan
 
         return collect(IlluminateArtisan::all())
             ->filter(function ($command) use ($whitelistedCommands) {
-                if (null === $whitelistedCommands || empty($whitelistedCommands)) {
+                if (
+                    null === $whitelistedCommands ||
+                    empty($whitelistedCommands)
+                ) {
                     return true;
                 }
 
-                return \in_array(\get_class($command), $whitelistedCommands, true);
+                return \in_array(
+                    \get_class($command),
+                    $whitelistedCommands,
+                    true
+                );
             })
             ->mapWithKeys(function ($command) {
                 return [
@@ -123,7 +130,7 @@ class Artisan
      */
     protected function getConsoleTtyFile(): string
     {
-        return storage_path('app/console.tty');
+        return config('artisan-tool.console.tty-file');
     }
 
     /**
@@ -134,7 +141,11 @@ class Artisan
      */
     public function makeCommand($command)
     {
-        return sprintf("php %s {$command}", base_path('artisan'));
+        return sprintf(
+            "%s %s {$command}",
+            config('artisan-tool.php.executable'),
+            base_path('artisan')
+        );
     }
 
     /**
@@ -145,16 +156,11 @@ class Artisan
     public function run($command)
     {
         $this->storeCurrentCommandLine(
-            config('app.name') .
-                ':~$ ' .
+            config('artisan-tool.console.prompt') .
                 ($command = $this->makeCommand($this->sanitize($command)))
         );
 
-        app(Executor::class)->exec(
-            $command,
-            base_path(),
-            $this->getConsoleTtyFile()
-        );
+        app(Executor::class)->exec($command, $this->getConsoleTtyFile());
     }
 
     /**
@@ -164,14 +170,12 @@ class Artisan
      */
     public function readConsoleBuffer()
     {
-        return (
-            $this->getCurrentCommandLine() .
+        return $this->getCurrentCommandLine() .
             $this->toHtml(
                 file_exists($tty = $this->getConsoleTtyFile())
                     ? file_get_contents($tty)
                     : ''
-            )
-        );
+            );
     }
 
     /**

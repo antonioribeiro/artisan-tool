@@ -23,15 +23,26 @@ class ToolServiceProvider extends ServiceProvider
             $this->routes();
         });
 
-        if ($this->app->runningInConsole()) {
-            $this->publishes([
-                __DIR__.'/../config/artisan-tool.php' => config_path('artisan-tool.php'),
-            ], 'config');
-        }
+        $this->publishAndMergeConfig();
 
         Nova::serving(function (ServingNova $event) {
             //
         });
+    }
+
+    private function publishAndMergeConfig(): void
+    {
+        $this->publishes(
+            [
+                ($config =
+                    __DIR__ . '/../config/artisan-tool.php') => config_path(
+                    'artisan-tool.php'
+                )
+            ],
+            'artisan-tool'
+        );
+
+        $this->mergeConfigFrom($config, 'artisan-tool');
     }
 
     /**
